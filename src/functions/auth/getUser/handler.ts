@@ -1,30 +1,47 @@
 import { getUserDetails } from 'src/services/auth';
 
 export const getUser = async (event) => {
-    const requestBody = JSON.parse(event.body);
+    const authorization = event.headers.Authorization;
 
-    try {
-        const response = await getUserDetails(requestBody);
-        return {
-            statusCode: 200,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-            },
-            body: JSON.stringify({
-                message: 'authorized',
-                response: response,
-            }),
-        };
-    } catch (error: any) {
-        /* error logger */
-        console.log('Error Get User Handler :', error);
+    if (authorization) {
+        try {
+            const response = await getUserDetails(authorization);
+            return {
+                statusCode: 200,
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                },
+                body: JSON.stringify({
+                    message: 'authorized',
+                    response,
+                    error: null,
+                }),
+            };
+        } catch (error: any) {
+            /* error logger */
+            console.log('Error Get User Handler :', error);
+            return {
+                statusCode: 401,
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                },
+                body: JSON.stringify({
+                    message: 'unauthorized',
+                    response: null,
+                    error,
+                }),
+            };
+        }
+    } else {
         return {
             statusCode: 401,
             headers: {
                 'Access-Control-Allow-Origin': '*',
             },
             body: JSON.stringify({
-                message: 'unauthorized',
+                message: 'required header not provided',
+                response: null,
+                error: 'required header not provided',
             }),
         };
     }

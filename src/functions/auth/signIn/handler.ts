@@ -1,6 +1,6 @@
 import { userSignIn } from 'src/services/auth';
 
-export const login = async (event) => {
+export const signIn = async (event) => {
     const requestBody = JSON.parse(event.body);
 
     try {
@@ -12,19 +12,22 @@ export const login = async (event) => {
             },
             body: JSON.stringify({
                 message: 'login successful',
-                response: response,
+                response,
+                error: null,
             }),
         };
     } catch (error: any) {
         /* error logger */
         console.log('Error Login Handler :', error);
         return {
-            statusCode: 401,
+            statusCode: 400,
             headers: {
                 'Access-Control-Allow-Origin': '*',
             },
             body: JSON.stringify({
                 message: 'check password and username',
+                response: null,
+                error,
             }),
         };
     }

@@ -1,15 +1,14 @@
 import { getFunctionPath } from 'src/util/path';
 
 export default {
-    handler: getFunctionPath('/handler.deleteUser', __dirname, process.cwd()),
+    handler: getFunctionPath('/handler.confirmSignUp', __dirname, process.cwd()),
     events: [
         {
             http: {
                 method: 'post',
-                path: 'muzi/auth/deleteUser',
+                path: 'muzi/auth/signup/confirm',
                 cors: {
                     origin: '*',
-                    headers: ['Authorization'],
                 },
             },
         },
