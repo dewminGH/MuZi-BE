@@ -5,8 +5,8 @@ export default {
     events: [
         {
             http: {
-                method: 'post',
-                path: 'muzi/auth/getUser',
+                method: 'get',
+                path: 'muzi/auth/get-user',
                 cors: {
                     origin: '*',
                     headers: ['Authorization'],

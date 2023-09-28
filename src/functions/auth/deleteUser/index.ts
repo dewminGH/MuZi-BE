@@ -6,7 +6,7 @@ export default {
         {
             http: {
                 method: 'post',
-                path: 'muzi/auth/deleteUser',
+                path: 'muzi/auth/delete-user',
                 cors: {
                     origin: '*',
                     headers: ['Authorization'],

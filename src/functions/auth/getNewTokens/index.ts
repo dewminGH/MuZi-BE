@@ -6,7 +6,7 @@ export default {
         {
             http: {
                 method: 'post',
-                path: 'muzi/auth/getNewTokens',
+                path: 'muzi/auth/get-new-tokens',
                 cors: {
                     origin: '*',
                     headers: ['Authorization'],

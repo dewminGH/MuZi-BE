@@ -23,12 +23,12 @@ aws sts get-caller-identity --query Account --output text
 # --configure ENV for Lambda
 
 [LAMBDA] : [ENV]  
-[confirmUserRegister] : `CLIENT_ID` , `REGION` , `USER_POOL_ID`
-[deleteUser] : `no envs`
+[confirmSignUp] : `CLIENT_ID` , `REGION` , `USER_POOL_ID`
+[deleteUser] : `REGION`
 [userGetNewTokens] : `CLIENT_ID` , `REGION`
 [getUser] : `CLIENT_ID` , `REGION`
-[login] : `CLIENT_ID` , `REGION`
-[register] : `CLIENT_ID` , `REGION`
+[signIn] : `CLIENT_ID` , `REGION`
+[signUp] : `CLIENT_ID` , `REGION`
 
 # `configure envs directly to lambda functions`
 
