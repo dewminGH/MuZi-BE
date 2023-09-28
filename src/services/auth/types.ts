@@ -15,15 +15,3 @@ export interface IUserData {
     username: string;
     password: string;
 }
-
-export interface IGetNewTokens {
-    refreshToken: string;
-}
-
-export interface IGetUser {
-    accessToken: string;
-}
-
-export interface IDeleteUser {
-    accessToken: string;
-}

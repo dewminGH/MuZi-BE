@@ -6,17 +6,10 @@ export default {
         {
             http: {
                 method: 'post',
-                path: 'deleteUser',
+                path: 'muzi/auth/delete-user',
                 cors: {
                     origin: '*',
-                    headers: [
-                        'Content-Type',
-                        'X-Amz-Date',
-                        'Authorization',
-                        'X-Api-Key',
-                        'X-Amz-Security-Token',
-                        'X-Amz-User-Agent',
-                    ],
+                    headers: ['Authorization'],
                 },
             },
         },
