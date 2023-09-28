@@ -5,18 +5,11 @@ export default {
     events: [
         {
             http: {
-                method: 'post',
-                path: 'getUser',
+                method: 'get',
+                path: 'muzi/auth/get-user',
                 cors: {
                     origin: '*',
-                    headers: [
-                        'Content-Type',
-                        'X-Amz-Date',
-                        'Authorization',
-                        'X-Api-Key',
-                        'X-Amz-Security-Token',
-                        'X-Amz-User-Agent',
-                    ],
+                    headers: ['Authorization'],
                 },
             },
         },

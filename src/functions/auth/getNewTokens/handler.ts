@@ -1,30 +1,47 @@
 import { userGetNewTokens } from 'src/services/auth';
 
 export const getNewTokens = async (event) => {
-    const requestBody = JSON.parse(event.body);
+    const authorization = event.headers.Authorization;
 
-    try {
-        const response = await userGetNewTokens(requestBody);
-        return {
-            statusCode: 200,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-            },
-            body: JSON.stringify({
-                message: 'authorized',
-                response: response,
-            }),
-        };
-    } catch (error: any) {
-        /* error logger */
-        console.log('Error Delete User Handler :', error);
+    if (authorization) {
+        try {
+            const response = await userGetNewTokens(authorization);
+            return {
+                statusCode: 200,
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                },
+                body: JSON.stringify({
+                    message: 'authorized',
+                    response,
+                    error: null,
+                }),
+            };
+        } catch (error: any) {
+            /* error logger */
+            console.log('Error Delete User Handler :', error);
+            return {
+                statusCode: 400,
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                },
+                body: JSON.stringify({
+                    message: 'not authorized',
+                    response: null,
+                    error,
+                }),
+            };
+        }
+    } else {
         return {
             statusCode: 401,
             headers: {
                 'Access-Control-Allow-Origin': '*',
             },
             body: JSON.stringify({
-                message: 'not authorized',
+                message: 'required header not provided',
+                response: null,
+                error: 'required header not provided',
             }),
         };
     }
