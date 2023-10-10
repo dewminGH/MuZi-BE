@@ -1,3 +1,6 @@
+/* _python nlp layer export */
+export { default as nlpLayer } from './nlpLayer';
+
 /*auth*/
 export { default as signUp } from './auth/signUp';
 export { default as confirmSignUp } from './auth/confirmSignUp';
