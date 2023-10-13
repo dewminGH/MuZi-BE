@@ -14,7 +14,7 @@
 1: Create & configure AWS account
 2: configure your cli with your account
 3.1 [optinal]: check your aws account
-aws sts get-caller-identity --query Account --output text
+`aws sts get-caller-identity --query Account --output text`
 4: deployment command
 `sls deploy --stage [your stage] --region [your region]`
 5: remove deployment
