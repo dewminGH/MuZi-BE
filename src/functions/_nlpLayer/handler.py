@@ -10,15 +10,15 @@ def calculate_similarity(target, bios):
     for bio in bios:
         doc = nlp(bio["userData"])  # adjusting to new JSON structure
         similarity_score = doc.similarity(nlp(target))
-        similarity_scores.append((bio, similarity_score))
+        similarity_scores.append(
+            (bio["id"], similarity_score))  # Only store the ID
 
     sorted_bios = sorted(similarity_scores, key=lambda x: x[1], reverse=True)
 
-    # Return the top 3 bios with the highest similarity scores, maintaining the user's ID
-    top_3_bios = [{"id": bio["id"], "userData": bio["userData"]}
-                  for bio, score in sorted_bios[:3]]
+    # Return the top 5 bios with the highest similarity scores, maintaining the user's ID
+    top_5_bios = [bio_id for bio_id, score in sorted_bios[:5]]
 
-    return top_3_bios
+    return top_5_bios
 
 ##########################################
 
@@ -26,13 +26,13 @@ def calculate_similarity(target, bios):
 def nlpLayer(event, context):
     print("numpy", np.__version__, "spacy", spacy.__version__)
     request_body = json.loads(event["body"])
-    # adjusting to new JSON structure
+
     user_list_data = request_body.get("userList", [])
     target_attribute = request_body.get("target")
 
-    top_3_matched_bios = calculate_similarity(target_attribute, user_list_data)
+    top_5_matched_bios = calculate_similarity(target_attribute, user_list_data)
 
-    print(top_3_matched_bios)
+    print(top_5_matched_bios)
 
     return {
         "statusCode": 200,
@@ -44,6 +44,6 @@ def nlpLayer(event, context):
             "status": "running layer ....",
             "[DEBUG] running numpy_version": np.__version__,
             "[DEBUG] running spacy": spacy.__version__,
-            "recommend profiles": top_3_matched_bios
+            "recommendProfiles": top_5_matched_bios
         })
     }
