@@ -7,7 +7,7 @@ export default {
     package: {
         individually: true,
         exclude: ['**'],
-        include: ['src/functions/nlpLayer/**'],
+        include: ['src/functions/_nlpLayer/**'],
     },
     layers: [
         'arn:aws:lambda:ap-south-1:610128457601:layer:extra-layer:1',

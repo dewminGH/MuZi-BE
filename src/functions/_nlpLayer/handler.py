@@ -31,7 +31,6 @@ def calculate_similarity(target, bios):
 
 
 def nlpLayer(event, context):
-    print('dddddddddddddddddddddddftytytytyututuiyiyi')
     print("numpy", np.__version__, "spacy")
     # Example: Using numpy and spaCy
 
