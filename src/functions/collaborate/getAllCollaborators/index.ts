@@ -1,12 +1,12 @@
 import { getFunctionPath } from 'src/util/path';
 
 export default {
-    handler: getFunctionPath('/handler.getNewTokens', __dirname, process.cwd()),
+    handler: getFunctionPath('/handler.getAllCollaborators', __dirname, process.cwd()),
     events: [
         {
             http: {
-                method: 'post',
-                path: 'muzi/auth/get-new-tokens',
+                method: 'get',
+                path: 'muzi/client/get-collaborators',
                 cors: {
                     origin: '*',
                     headers: ['Authorization'],

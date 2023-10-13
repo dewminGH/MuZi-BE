@@ -1,5 +1,5 @@
 import * as AWS from 'aws-sdk';
-import { IConfirmData, IDeleteUser, IGetNewTokens, IGetUser, IUser, IUserData } from './types';
+import { IConfirmData, IUser, IUserData } from './types';
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
 
 /*configure region*/
@@ -101,16 +101,16 @@ export const userSignIn = async (userData: IUserData) => {
 };
 
 /*token refresh helper*/
-export const userGetNewTokens = async (tokenData: IGetNewTokens) => {
+export const userGetNewTokens = async (authorization: string) => {
     try {
         const params = {
             AuthFlow: 'REFRESH_TOKEN_AUTH',
             ClientId: process.env.CLIENT_ID,
             AuthParameters: {
-                REFRESH_TOKEN: tokenData.refreshToken,
+                REFRESH_TOKEN: authorization,
             },
             ClientMetadata: {
-                REFRESH_TOKEN: tokenData.refreshToken,
+                REFRESH_TOKEN: authorization,
             },
         };
         const data = await new Promise((resolve, reject) => {
@@ -131,10 +131,10 @@ export const userGetNewTokens = async (tokenData: IGetNewTokens) => {
 };
 
 /*get current helper*/
-export const getUserDetails = async (tokenData: IGetUser) => {
+export const getUserDetails = async (AccessToken: string) => {
     try {
         var params = {
-            AccessToken: tokenData.accessToken,
+            AccessToken,
         };
         const data = await new Promise((resolve, reject) => {
             cognitoIdentityServiceProvider.getUser(params, (err, data) => {
@@ -154,10 +154,10 @@ export const getUserDetails = async (tokenData: IGetUser) => {
 };
 
 /*get delete helper*/
-export const setDeleteUser = async (tokenData: IDeleteUser) => {
+export const setDeleteUser = async (AccessToken: string) => {
     try {
         var params = {
-            AccessToken: tokenData.accessToken,
+            AccessToken,
         };
         const data = await new Promise((resolve, reject) => {
             cognitoIdentityServiceProvider.deleteUser(params, (err, data) => {

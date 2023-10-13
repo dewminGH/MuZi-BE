@@ -1,6 +1,6 @@
 import { confirmUserRegister } from 'src/services/auth';
 
-export const confirmRegister = async (event) => {
+export const confirmSignUp = async (event) => {
     const requestBody = JSON.parse(event.body);
 
     try {
@@ -12,19 +12,22 @@ export const confirmRegister = async (event) => {
             },
             body: JSON.stringify({
                 message: 'confirmation successful',
-                response: response,
+                response,
+                error: null,
             }),
         };
     } catch (error: any) {
         /* error logger */
         console.log('Error Confirm register Handler :', error);
         return {
-            statusCode: 401,
+            statusCode: 400,
             headers: {
                 'Access-Control-Allow-Origin': '*',
             },
             body: JSON.stringify({
                 message: 'confirmation fail',
+                response: null,
+                error,
             }),
         };
     }

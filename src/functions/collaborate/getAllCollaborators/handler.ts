@@ -1,19 +1,19 @@
-import { setDeleteUser } from 'src/services/auth';
+import { allCollaborators } from 'src/services/collaborate';
 
-export const deleteUser = async (event) => {
+export const getAllCollaborators = async (event) => {
     const authorization = event.headers.Authorization;
 
     if (authorization) {
         try {
-            const response = await setDeleteUser(authorization);
+            const response = await allCollaborators();
             return {
                 statusCode: 200,
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                 },
                 body: JSON.stringify({
-                    message: 'account delete successful',
-                    response,
+                    message: 'onboard successful',
+                    response: response,
                     error: null,
                 }),
             };
@@ -26,7 +26,7 @@ export const deleteUser = async (event) => {
                     'Access-Control-Allow-Origin': '*',
                 },
                 body: JSON.stringify({
-                    message: 'account delete failed',
+                    message: 'onboard failed',
                     response: null,
                     error,
                 }),
