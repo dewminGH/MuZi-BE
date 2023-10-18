@@ -44,7 +44,7 @@ describe("getAllCollaborators handler", () => {
         "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
-        message: "onboard successful",
+        message: "collaborator fetched successful",
         response: mockResponse,
         error: null,
       }),
