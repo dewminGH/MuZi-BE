@@ -1,6 +1,9 @@
 /* _python nlp layer */
 export { default as nlpLayer } from "./_nlpLayer";
 
+/* _skScore layer */
+export { default as sklearnHandler } from "./_skScore";
+
 /*auth*/
 export { default as signUp } from "./auth/signUp";
 export { default as confirmSignUp } from "./auth/confirmSignUp";

@@ -12,21 +12,21 @@ export const getAllCollaborators = async (event) => {
           "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
-          message: "onboard successful",
+          message: "collaborator fetched successful",
           response: response,
           error: null,
         }),
       };
     } catch (error: any) {
       /* error logger */
-      console.log("Error Delete User Handler :", error);
+      console.log("Error get all collaborator Handler :", error);
       return {
         statusCode: 400,
         headers: {
           "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
-          message: "onboard failed",
+          message: "collaborators fetch failed",
           response: null,
           error,
         }),

@@ -20,7 +20,7 @@ export const onBoardUser = async (event) => {
       };
     } catch (error: any) {
       /* error logger */
-      console.log("Error Delete User Handler :", error);
+      console.log("Error onBoard Handler :", error);
       return {
         statusCode: 400,
         headers: {
